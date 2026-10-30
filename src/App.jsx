@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const CANCHAS = ["Fútbol 5", "Básquet", "Pádel", "Tenis"];
+const CANCHAS = ["Fútbol 5", "Básquet", "Pádel", "Tenis","Voley"];
 const HORAS = Array.from({ length: 14 }, (_, i) => `${String(i + 8).padStart(2, "0")}:00`);
 
 function hoy() {
