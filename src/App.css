@@ -1,0 +1,223 @@
+:root {
+  --cancha: #1d4f91;
+  --cancha-oscura: #163d72;
+  --linea: #f7f9fc;
+  --pelota: #e4ea3c;
+  --fondo: #eef3f8;
+  --texto: #14233a;
+  --suave: #5b6b82;
+  --error: #b3261e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: "Barlow", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+h1,
+h2 {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  margin: 0;
+  line-height: 1.05;
+}
+
+.app {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+.encabezado {
+  margin-bottom: 28px;
+}
+
+.encabezado h1 {
+  font-size: clamp(2.6rem, 8vw, 4.2rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.encabezado p {
+  margin: 8px 0 0;
+  color: var(--suave);
+  font-size: 1.05rem;
+}
+
+.contenido {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Formulario: la cancha, con sus líneas de juego */
+.cancha {
+  position: relative;
+  background: var(--cancha);
+  color: var(--linea);
+  padding: 34px 32px 32px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  outline: 2px solid rgba(247, 249, 252, 0.75);
+  outline-offset: -14px;
+}
+
+.cancha h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+input,
+select {
+  font: inherit;
+  padding: 10px 12px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  background: var(--linea);
+  color: var(--texto);
+  width: 100%;
+}
+
+.fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.cancha button {
+  margin-top: 6px;
+  padding: 12px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--pelota);
+  color: var(--cancha-oscura);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.cancha button:hover {
+  filter: brightness(0.95);
+}
+
+:focus-visible {
+  outline: 3px solid var(--pelota);
+  outline-offset: 2px;
+}
+
+.lista :focus-visible {
+  outline-color: var(--cancha);
+}
+
+.error {
+  margin: 0;
+  padding: 10px 12px;
+  background: #fde8e6;
+  color: var(--error);
+  border-radius: 4px;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+/* Lista de reservas */
+.lista h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.lista ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lista li {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #fff;
+  border-left: 6px solid var(--cancha);
+  padding: 14px 18px;
+  border-radius: 0 6px 6px 0;
+}
+
+.hora {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cancha);
+  min-width: 78px;
+}
+
+.datos {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.datos span {
+  color: var(--suave);
+  font-size: 0.95rem;
+}
+
+.cancelar {
+  background: none;
+  border: 2px solid #c9d3e0;
+  border-radius: 4px;
+  padding: 6px 12px;
+  color: var(--suave);
+  font-size: 0.9rem;
+}
+
+.cancelar:hover {
+  border-color: var(--error);
+  color: var(--error);
+}
+
+.vacio {
+  background: #fff;
+  padding: 22px;
+  border-radius: 6px;
+  color: var(--suave);
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .contenido {
+    grid-template-columns: 1fr;
+  }
+
+  .lista li {
+    flex-wrap: wrap;
+  }
+
+  .cancelar {
+    width: 100%;
+  }
+}
