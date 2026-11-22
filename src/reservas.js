@@ -1,7 +1,9 @@
 // Lógica de reservas, separada de la interfaz para poder probarla.
 
 export function hayConflicto(reservas, nueva) {
-  return reservas.some((r) => r.cancha === nueva.cancha && r.fecha === nueva.fecha);
+  return reservas.some(
+    (r) => r.cancha === nueva.cancha && r.fecha === nueva.fecha && r.hora === nueva.hora
+  );
 }
 
 export function validarReserva(reservas, nueva) {
