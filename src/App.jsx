@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { validarReserva, ordenarReservas } from "./reservas.js";
 
 const CANCHAS = ["Fútbol 5", "Básquet", "Pádel", "Tenis","Voley"];
 const HORAS = Array.from({ length: 14 }, (_, i) => `${String(i + 8).padStart(2, "0")}:00`);
@@ -40,14 +41,8 @@ export default function App() {
   const guardar = (e) => {
     e.preventDefault();
     const nombre = form.nombre.trim();
-    if (!nombre) return setError("Escribe el nombre de quien reserva.");
-
-    const ocupada = reservas.some(
-      (r) => r.cancha === form.cancha && r.fecha === form.fecha && r.hora === form.hora
-    );
-    if (ocupada) {
-      return setError(`${form.cancha} ya está reservada ese día a las ${form.hora}. Elige otra hora.`);
-    }
+    const mensaje = validarReserva(reservas, { ...form, nombre });
+    if (mensaje) return setError(mensaje);
 
     setReservas([...reservas, { id: Date.now(), ...form, nombre }]);
     setForm({ ...form, nombre: "" });
@@ -56,7 +51,7 @@ export default function App() {
 
   const cancelar = (id) => setReservas(reservas.filter((r) => r.id !== id));
 
-  const ordenadas = [...reservas].sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
+  const ordenadas = ordenarReservas(reservas);
 
   return (
     <main className="app">
